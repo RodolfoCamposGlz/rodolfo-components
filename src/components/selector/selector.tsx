@@ -11,7 +11,10 @@ const dropdownClass = classNames(
 
 const Label = ({ label }: { label: string }) => {
   return (
-    <div className="rodolfo-components-flex rodolfo-components-top-[-8px] rodolfo-components-left-[12px] rodolfo-components-bg-white rodolfo-components-absolute">
+    <div
+      data-testid="test-label"
+      className="rodolfo-components-flex rodolfo-components-top-[-8px] rodolfo-components-left-[12px] rodolfo-components-bg-white rodolfo-components-absolute"
+    >
       <label className="rodolfo-components-text-xs/[16px] rodolfo-components-text-[#B2B6BD]">
         {label}
       </label>
@@ -28,7 +31,7 @@ export const Selector = ({
   isSorted = false,
   onSelect,
 }: ISelectorProps): JSX.Element => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -127,6 +130,7 @@ export const Selector = ({
   return (
     <div id={id} ref={dropdownRef} className="rodolfo-components">
       <div
+        data-testid="dropdown-toggle"
         onClick={onChangeMenuStatus}
         className={classNames(
           "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-flex-wrap rodolfo-components-justify-between rodolfo-components-h-[38px] rodolfo-components-border rodolfo-components-relative rodolfo-components-bg-white rodolfo-components-rounded-lg rodolfo-components-px-4 rodolfo-components-w-full ",
@@ -141,6 +145,7 @@ export const Selector = ({
         <div className="rodolfo-components-grid rodolfo-components-flex-1 rodolfo-components-flex-shrink-1 rodolfo-components-basis-0">
           {!inputValue && (
             <div
+              data-testid="selected-value"
               className={classNames(
                 "rodolfo-components-font-sm/[22px] rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-row-start-1 rodolfo-components-row-end-2 rodolfo-components-col-start-1 rodolfo-components-col-end-3 rodolfo-components-w-full",
                 {
@@ -154,6 +159,7 @@ export const Selector = ({
           )}
           <div className="rodolfo-components-inline-grid rodolfo-components-row-start-1 rodolfo-components-row-end-2 rodolfo-components-col-start-1 rodolfo-components-col-end-3">
             <input
+              data-testid="input-search"
               role="combobox"
               ref={inputRef}
               onChange={onSearchOption}
@@ -166,11 +172,12 @@ export const Selector = ({
       </div>
       <div className="rodolfo-components-relative">
         {isOpen && (
-          <div className={dropdownClass}>
+          <div data-testid="dropdown-menu" className={dropdownClass}>
             {filteredItems.length > 0 ? (
               <ul role="menu">
                 {filteredItems?.map((item) => (
                   <li
+                    role="menuitem"
                     key={item.value}
                     onClick={() => handleChange(item)}
                     className={classNames(

@@ -22,7 +22,7 @@
 
 ::before,
 ::after {
-  --tw-content: "";
+  --tw-content: '';
 }
 
 /*
@@ -44,10 +44,9 @@ html,
   -moz-tab-size: 4;
   /* 3 */
   -o-tab-size: 4;
-  tab-size: 4;
+     tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
@@ -90,7 +89,7 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
 /*
@@ -136,8 +135,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* 1 */
   font-feature-settings: normal;
   /* 2 */
@@ -238,9 +236,9 @@ select {
 */
 
 button,
-input:where([type="button"]),
-input:where([type="reset"]),
-input:where([type="submit"]) {
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
@@ -287,7 +285,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 2. Correct the outline style in Safari.
 */
 
-[type="search"] {
+[type='search'] {
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
@@ -380,8 +378,7 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::-moz-placeholder,
-textarea::-moz-placeholder {
+input::-moz-placeholder, textarea::-moz-placeholder {
   opacity: 1;
   /* 1 */
   color: #9ca3af;
@@ -449,9 +446,7 @@ video {
   display: none;
 }
 
-*,
-::before,
-::after {
+*, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -567,44 +562,12 @@ video {
   position: relative;
 }
 
-.rodolfo-components .rodolfo-components-top-0\.5 {
-  top: 0.125rem;
-}
-
-.rodolfo-components .rodolfo-components-left-2 {
-  left: 0.5rem;
-}
-
-.rodolfo-components .rodolfo-components-left-2\.5 {
-  left: 0.625rem;
-}
-
-.rodolfo-components .rodolfo-components-top-0 {
-  top: 0px;
-}
-
-.rodolfo-components .rodolfo-components-top-\[-5px\] {
-  top: -5px;
-}
-
-.rodolfo-components .rodolfo-components-top-\[-6px\] {
-  top: -6px;
+.rodolfo-components .rodolfo-components-left-\[12px\] {
+  left: 12px;
 }
 
 .rodolfo-components .rodolfo-components-top-\[-8px\] {
   top: -8px;
-}
-
-.rodolfo-components .rodolfo-components-top-\[-10px\] {
-  top: -10px;
-}
-
-.rodolfo-components .rodolfo-components-top-\[-18px\] {
-  top: -18px;
-}
-
-.rodolfo-components .rodolfo-components-left-\[12px\] {
-  left: 12px;
 }
 
 .rodolfo-components .rodolfo-components-z-10 {
@@ -625,11 +588,6 @@ video {
 
 .rodolfo-components .rodolfo-components-row-end-2 {
   grid-row-end: 2;
-}
-
-.rodolfo-components .rodolfo-components-mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .rodolfo-components .rodolfo-components-mr-2 {
@@ -688,16 +646,8 @@ video {
   cursor: pointer;
 }
 
-.rodolfo-components .rodolfo-components-flex-row {
-  flex-direction: row;
-}
-
 .rodolfo-components .rodolfo-components-flex-wrap {
   flex-wrap: wrap;
-}
-
-.rodolfo-components .rodolfo-components-place-items-stretch {
-  place-items: stretch;
 }
 
 .rodolfo-components .rodolfo-components-items-center {
@@ -710,10 +660,6 @@ video {
 
 .rodolfo-components .rodolfo-components-justify-between {
   justify-content: space-between;
-}
-
-.rodolfo-components .rodolfo-components-justify-self-start {
-  justify-self: start;
 }
 
 .rodolfo-components .rodolfo-components-overflow-y-auto {
@@ -813,13 +759,9 @@ video {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
-.rodolfo-components .rodolfo-components-text-\[red\] {
+.rodolfo-components .rodolfo-components-text-\[\#7d7d7e\] {
   --tw-text-opacity: 1;
-  color: rgb(255 0 0 / var(--tw-text-opacity));
-}
-
-.rodolfo-components .rodolfo-components-text-\[\#\#B2B6BD\] {
-  color: #b2b6bd;
+  color: rgb(125 125 126 / var(--tw-text-opacity));
 }
 
 .rodolfo-components .rodolfo-components-text-\[\#B2B6BD\] {
@@ -827,29 +769,15 @@ video {
   color: rgb(178 182 189 / var(--tw-text-opacity));
 }
 
-.rodolfo-components .rodolfo-components-text-\[\#7d7d7e\] {
-  --tw-text-opacity: 1;
-  color: rgb(125 125 126 / var(--tw-text-opacity));
-}
-
 .rodolfo-components .rodolfo-components-text-\[\#b2b6bd\] {
   --tw-text-opacity: 1;
   color: rgb(178 182 189 / var(--tw-text-opacity));
 }
 
-.rodolfo-components .rodolfo-components-text-\[\#7d7d7e\]\/\[22px\] {
-  color: rgb(125 125 126 / 22px);
-}
-
-.rodolfo-components .rodolfo-components-text-\[\#b2b6bd\]\/\[22px\] {
-  color: rgb(178 182 189 / 22px);
-}
-
 .rodolfo-components .rodolfo-components-shadow-custom {
   --tw-shadow: 0px 4px 8px 0px rgba(64, 67, 68, 0.14);
   --tw-shadow-colored: 0px 4px 8px 0px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .rodolfo-components .rodolfo-components-outline-none {
@@ -870,6 +798,5 @@ video {
 .rodolfo-components .hover\:rodolfo-components-shadow-custom:hover {
   --tw-shadow: 0px 4px 8px 0px rgba(64, 67, 68, 0.14);
   --tw-shadow-colored: 0px 4px 8px 0px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
