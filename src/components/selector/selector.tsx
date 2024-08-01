@@ -121,7 +121,7 @@ export const Selector = (props: ISelectorProps): JSX.Element => {
         </div>
         {hasError && (
           <div
-            className="rodolfo-components-tx-sm rodolfo-components-text-red-400"
+            className="rodolfo-components-text-sm rodolfo-components-text-red-400 rodolfo-components-mt-1"
             aria-live="assertive"
           >
             {error}
