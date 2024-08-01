@@ -1,136 +1,39 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useRef } from "react";
 import classNames from "classnames";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { ISelectorProps, DropdownItem } from "./selector.types";
 import Profile from "../icons/profile";
 import UpArrow from "../icons/arrow_up";
 import DownArrow from "../icons/arrow_down";
+import { useSelectorController } from "./useSelector";
+import { Label } from "../label/label";
 
 const DEFAULT_PLACEHOLDER = "Select...";
 
-const dropdownClass = classNames(
-  "rodolfo-components-absolute rodolfo-components-bg-white rodolfo-components-w-full rodolfo-components-max-h-52 rodolfo-components-overflow-y-auto rodolfo-components-py-2  rodolfo-components-rounded-lg rodolfo-components-shadow-custom rodolfo-components-z-10 rodolfo-components-mt-1"
-);
-
-const Label = ({ label }: { label: string }) => {
-  return (
-    <div
-      data-testid="test-label"
-      className="rodolfo-components-flex rodolfo-components-px-1 rodolfo-components-top-[-8px] rodolfo-components-left-[8px] rodolfo-components-bg-white rodolfo-components-absolute"
-    >
-      <label className="rodolfo-components-text-xs/[16px] rodolfo-components-text-[#B2B6BD]">
-        {label}
-      </label>
-    </div>
-  );
-};
-
-export const Selector = ({
-  id,
-  label,
-  options,
-  hasImage = true,
-  placeholder = DEFAULT_PLACEHOLDER,
-  isSorted = false,
-  defaultValue,
-  onSelect,
-  error,
-  isDisabled = false,
-}: ISelectorProps): JSX.Element => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string>("");
-  const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const hasError = error ? true : false;
-
-  const handleChange = (item: DropdownItem): void => {
-    const { value } = item;
-    setSelectedItem(item);
-    onSelect?.(value);
-    setIsOpen(false);
-    setInputValue("");
-  };
-
-  useEffect(() => {
-    if (defaultValue) {
-      const findValue = options.find(
-        (v) => v.value === defaultValue
-      ) as DropdownItem;
-      setSelectedItem(findValue);
-    }
-  }, [defaultValue]);
-
-  const onSearchOption = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const onChangeMenuStatus = (): void => {
-    if (isOpen) {
-      setIsFocused(false);
-    } else {
-      setIsFocused(true);
-    }
-    setIsOpen(!isOpen);
-  };
-
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Backspace" && selectedItem && !inputValue) {
-      setSelectedItem(null);
-      setInputValue("");
-    }
-  };
-
-  useEffect(() => {
-    if (isFocused) {
-      // Attach the keydown event listener to the document
-      document.addEventListener("keydown", handleKeyDown);
-
-      // Cleanup the event listener on component unmount
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }
-  }, [isFocused, inputValue]);
-
-  const sortedOptions: DropdownItem[] = useMemo(() => {
-    if (isSorted) {
-      return options.slice().sort((a, b) => a.label.localeCompare(b.label));
-    }
-    return options;
-  }, [isSorted, options]);
-
-  const sortBySelectedItem = (): DropdownItem[] => {
-    const index = sortedOptions.findIndex(
-      (v) => v.value === selectedItem?.value
-    );
-    if (index !== -1) {
-      const sorted = [...sortedOptions];
-      const [item] = sorted.splice(index, 1);
-      sorted.unshift(item);
-      return sorted;
-    }
-    return sortedOptions;
-  };
-
-  const searchItems = (): DropdownItem[] => {
-    return sortedOptions.filter((item) =>
-      item.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  };
-
-  const filteredItems: DropdownItem[] = useMemo(() => {
-    //search items
-    if (inputValue) return searchItems();
-    //show sorted options
-    if (isSorted && !selectedItem) return sortedOptions;
-    //default options
-    if (!isSorted) return options;
-    //Set selected item to the first position and sort the array
-    if (selectedItem && isSorted) return sortBySelectedItem();
-    return options;
-  }, [isSorted, options, selectedItem, inputValue]);
+export const Selector = (props: ISelectorProps): JSX.Element => {
+  const {
+    id,
+    isDisabled,
+    label,
+    placeholder = DEFAULT_PLACEHOLDER,
+    error,
+    hasImage = false,
+  } = props;
+  const {
+    isOpen,
+    inputValue,
+    selectedItem,
+    isFocused,
+    inputRef,
+    hasError,
+    handleChange,
+    onSearchOption,
+    onChangeMenuStatus,
+    filteredItems,
+    setIsOpen,
+    setIsFocused,
+    setInputValue,
+  } = useSelectorController(props);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   useOutsideClick({
@@ -144,6 +47,7 @@ export const Selector = ({
     },
   });
 
+  console.log("isDisabled", isDisabled);
   return (
     <div className="rodolfo-components">
       <div
@@ -155,12 +59,14 @@ export const Selector = ({
           data-testid="dropdown-toggle"
           onClick={isDisabled ? () => null : onChangeMenuStatus}
           className={classNames(
-            "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-flex-wrap rodolfo-components-justify-between rodolfo-components-h-[38px] rodolfo-components-border rodolfo-components-relative rodolfo-components-bg-white rodolfo-components-rounded-lg rodolfo-components-px-4 rodolfo-components-w-full ",
+            "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-flex-wrap rodolfo-components-justify-between rodolfo-components-h-[38px] rodolfo-components-border rodolfo-components-relative rodolfo-components-rounded-lg rodolfo-components-px-4 rodolfo-components-w-full",
             {
+              "rodolfo-components-bg-[#dde1e9] rodolfo-components-cursor-not-allowed":
+                isDisabled,
+              "rodolfo-components-bg-white": !isDisabled,
               "rodolfo-components-border-focus": isFocused,
               "rodolfo-components-border-[#D1D5DB] hover:rodolfo-components-shadow-custom hover:rodolfo-components-border-[#C0C9D7]":
-                !isFocused,
-              "rodolfo-components-bg-[#dde1e9]": isDisabled,
+                !isFocused && !isDisabled && !hasError,
               "rodolfo-components-border-red-400": hasError,
             }
           )}
@@ -189,7 +95,12 @@ export const Selector = ({
                 onChange={onSearchOption}
                 value={inputValue}
                 disabled={isDisabled}
-                className="rodolfo-components-text-[#7d7d7e] rodolfo-components-cursor-pointer rodolfo-components-text-sm/[22px] rodolfo-components-w-full rodolfo-components-outline-none rodolfo-components-bg-transparent"
+                className={classNames(
+                  "rodolfo-components-text-[#7d7d7e] rodolfo-components-cursor-pointer rodolfo-components-text-sm/[22px] rodolfo-components-w-full rodolfo-components-outline-none rodolfo-components-bg-transparent",
+                  {
+                    "rodolfo-components-cursor-not-allowed": isDisabled,
+                  }
+                )}
               />
             </div>
           </div>
@@ -203,10 +114,15 @@ export const Selector = ({
 
         <div className="rodolfo-components-relative">
           {isOpen && (
-            <div data-testid="dropdown-menu" className={dropdownClass}>
+            <div
+              data-testid="dropdown-menu"
+              className={
+                "rodolfo-components-absolute rodolfo-components-bg-white rodolfo-components-w-full rodolfo-components-max-h-52 rodolfo-components-overflow-y-auto rodolfo-components-py-2  rodolfo-components-rounded-lg rodolfo-components-shadow-custom rodolfo-components-z-10 rodolfo-components-mt-1"
+              }
+            >
               {filteredItems.length > 0 ? (
                 <ul role="menu">
-                  {filteredItems?.map((item) => (
+                  {filteredItems?.map((item: DropdownItem) => (
                     <li
                       role="menuitem"
                       key={item.value}

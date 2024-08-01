@@ -660,6 +660,10 @@ video {
   cursor: pointer;
 }
 
+.rodolfo-components .rodolfo-components-cursor-not-allowed{
+  cursor: not-allowed;
+}
+
 .rodolfo-components .rodolfo-components-flex-wrap{
   flex-wrap: wrap;
 }
