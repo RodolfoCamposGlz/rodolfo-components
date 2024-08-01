@@ -6,7 +6,7 @@ import Profile from "../icons/profile";
 import UpArrow from "../icons/arrow_up";
 import DownArrow from "../icons/arrow_down";
 import { useSelectorController } from "./useSelector";
-import { Label } from "../label/label";
+import { Label } from "./label/label";
 
 const DEFAULT_PLACEHOLDER = "Select...";
 

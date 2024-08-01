@@ -712,6 +712,11 @@ video {
   border-color: rgb(248 113 113 / var(--tw-border-opacity));
 }
 
+.rodolfo-components .rodolfo-components-border-\[\#C0C9D7\]{
+  --tw-border-opacity: 1;
+  border-color: rgb(192 201 215 / var(--tw-border-opacity));
+}
+
 .rodolfo-components .rodolfo-components-bg-\[\#dde1e9\]{
   --tw-bg-opacity: 1;
   background-color: rgb(221 225 233 / var(--tw-bg-opacity));

@@ -179,3 +179,59 @@ test("should search the option and show it in the menu", () => {
   expect(updatedOptions).toHaveLength(1);
   expect(updatedOptions[0]).toHaveTextContent("Apple");
 });
+
+test("applies hover styles correctly in selector input", () => {
+  render(
+    <Selector
+      id="test-selector"
+      label="Test Selector"
+      options={unsortedOptions}
+      isSorted={true}
+    />
+  );
+
+  // Get the dropdown menu items
+  const dropdownToggle = screen.getByTestId("dropdown-toggle");
+
+  // Simulate hovering over the first menu item
+  fireEvent.mouseOver(dropdownToggle);
+
+  // Check if the hover styles are applied
+  expect(dropdownToggle).toHaveClass("hover:rodolfo-components-shadow-custom");
+});
+
+test("applies hover styles correctly in dropdown", () => {
+  render(
+    <Selector
+      id="test-selector"
+      label="Test Selector"
+      options={unsortedOptions}
+      isSorted={true}
+    />
+  );
+
+  const dropdownToggle = screen.getByTestId("dropdown-toggle");
+  // Simulate hovering over the first menu item
+  fireEvent.click(dropdownToggle);
+
+  // Get the menu items
+  const dropdownList = screen.getByTestId("dropdown-menu");
+
+  // Check if the hover styles are applied
+  expect(dropdownList).toHaveClass("rodolfo-components-shadow-custom");
+});
+
+test("shows border color when the menu is open", () => {
+  render(
+    <Selector
+      id="test-selector"
+      label="Test Selector"
+      options={unsortedOptions}
+      isSorted={true}
+    />
+  );
+  const dropdownToggle = screen.getByTestId("dropdown-toggle");
+  fireEvent.click(dropdownToggle);
+
+  expect(dropdownToggle).toHaveClass("rodolfo-components-border-focus"); // Adjust this to match the correct border color class
+});
