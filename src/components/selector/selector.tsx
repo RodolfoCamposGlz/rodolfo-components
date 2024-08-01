@@ -29,13 +29,18 @@ export const Selector = ({
   hasImage = true,
   placeholder = DEFAULT_PLACEHOLDER,
   isSorted = false,
+  defaultValue,
   onSelect,
+  error,
+  isDisabled = false,
 }: ISelectorProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const hasError = error ? true : false;
 
   const handleChange = (item: DropdownItem): void => {
     const { value } = item;
@@ -44,6 +49,15 @@ export const Selector = ({
     setIsOpen(false);
     setInputValue("");
   };
+
+  useEffect(() => {
+    if (defaultValue) {
+      const findValue = options.find(
+        (v) => v.value === defaultValue
+      ) as DropdownItem;
+      setSelectedItem(findValue);
+    }
+  }, [defaultValue]);
 
   const onSearchOption = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -127,17 +141,20 @@ export const Selector = ({
     },
   });
 
+  console.log("hasError", hasError);
   return (
     <div id={id} ref={dropdownRef} className="rodolfo-components">
       <div
         data-testid="dropdown-toggle"
-        onClick={onChangeMenuStatus}
+        onClick={isDisabled ? () => null : onChangeMenuStatus}
         className={classNames(
           "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-flex-wrap rodolfo-components-justify-between rodolfo-components-h-[38px] rodolfo-components-border rodolfo-components-relative rodolfo-components-bg-white rodolfo-components-rounded-lg rodolfo-components-px-4 rodolfo-components-w-full ",
           {
             "rodolfo-components-border-focus": isFocused,
             "rodolfo-components-border-[#D1D5DB] hover:rodolfo-components-shadow-custom hover:rodolfo-components-border-[#C0C9D7]":
               !isFocused,
+            "rodolfo-components-bg-[#dde1e9]": isDisabled,
+            "rodolfo-components-border-red-400": hasError,
           }
         )}
       >
@@ -164,12 +181,19 @@ export const Selector = ({
               ref={inputRef}
               onChange={onSearchOption}
               value={inputValue}
+              disabled={isDisabled}
               className="rodolfo-components-text-[#7d7d7e] rodolfo-components-cursor-pointer rodolfo-components-text-sm/[22px] rodolfo-components-w-full rodolfo-components-outline-none rodolfo-components-bg-transparent"
             />
           </div>
         </div>
         <img src={`/${isOpen ? "up" : "down"}.svg`} />
       </div>
+      {hasError && (
+        <div className="rodolfo-components-tx-sm rodolfo-components-text-red-400">
+          {error}
+        </div>
+      )}
+
       <div className="rodolfo-components-relative">
         {isOpen && (
           <div data-testid="dropdown-menu" className={dropdownClass}>
