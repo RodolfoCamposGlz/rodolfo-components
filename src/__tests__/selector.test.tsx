@@ -62,7 +62,7 @@ test("should display the selected option value", () => {
   fireEvent.click(toggleButton);
 
   // Select the first option
-  const firstOption = screen.getAllByRole("menuitem")[0];
+  const firstOption = screen.getAllByRole("option")[0];
   fireEvent.click(firstOption);
 
   // Check that the selected value is displayed
@@ -87,7 +87,7 @@ test("should organize options from A to Z", () => {
   fireEvent.click(toggleButton);
 
   // Get all options
-  const options = screen.getAllByRole("menuitem");
+  const options = screen.getAllByRole("option");
 
   // Check the order of options
   expect(options[0]).toHaveTextContent("Apple");
@@ -110,14 +110,14 @@ test("should move selected item to the top of the list", () => {
   fireEvent.click(toggleButton);
 
   // Select the second option (Cherry)
-  const secondOption = screen.getAllByRole("menuitem")[2];
+  const secondOption = screen.getAllByRole("option")[2];
   fireEvent.click(secondOption);
 
   // Open the dropdown again to check the new order
   fireEvent.click(toggleButton);
 
   // Get all options
-  const updatedOptions = screen.getAllByRole("menuitem");
+  const updatedOptions = screen.getAllByRole("option");
 
   // Check that Cherry is now the first item
   expect(updatedOptions[0]).toHaveTextContent("Cherry");
@@ -141,14 +141,14 @@ test("should move selected item to the top of the list and the remaning should b
   fireEvent.click(toggleButton);
 
   // Select the second option (Cherry)
-  const secondOption = screen.getAllByRole("menuitem")[2];
+  const secondOption = screen.getAllByRole("option")[2];
   fireEvent.click(secondOption);
 
   // Open the dropdown again to check the new order
   fireEvent.click(toggleButton);
 
   // Get all options
-  const updatedOptions = screen.getAllByRole("menuitem");
+  const updatedOptions = screen.getAllByRole("option");
 
   // Check that Cherry is now the first item
   expect(updatedOptions[0]).toHaveTextContent("Cherry");
@@ -174,7 +174,7 @@ test("should search the option and show it in the menu", () => {
   //change input value
   fireEvent.change(input, { target: { value: "Apple" } });
 
-  const updatedOptions = screen.getAllByRole("menuitem");
+  const updatedOptions = screen.getAllByRole("option");
   // Check that only the "Apple" option is displayed
   expect(updatedOptions).toHaveLength(1);
   expect(updatedOptions[0]).toHaveTextContent("Apple");
