@@ -13,7 +13,7 @@ const Label = ({ label }: { label: string }) => {
   return (
     <div
       data-testid="test-label"
-      className="rodolfo-components-flex rodolfo-components-top-[-8px] rodolfo-components-left-[12px] rodolfo-components-bg-white rodolfo-components-absolute"
+      className="rodolfo-components-flex rodolfo-components-px-1 rodolfo-components-top-[-8px] rodolfo-components-left-[8px] rodolfo-components-bg-white rodolfo-components-absolute"
     >
       <label className="rodolfo-components-text-xs/[16px] rodolfo-components-text-[#B2B6BD]">
         {label}
@@ -141,102 +141,107 @@ export const Selector = ({
     },
   });
 
-  console.log("hasError", hasError);
   return (
-    <div id={id} ref={dropdownRef} className="rodolfo-components">
+    <div className="rodolfo-components">
       <div
-        data-testid="dropdown-toggle"
-        onClick={isDisabled ? () => null : onChangeMenuStatus}
-        className={classNames(
-          "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-flex-wrap rodolfo-components-justify-between rodolfo-components-h-[38px] rodolfo-components-border rodolfo-components-relative rodolfo-components-bg-white rodolfo-components-rounded-lg rodolfo-components-px-4 rodolfo-components-w-full ",
-          {
-            "rodolfo-components-border-focus": isFocused,
-            "rodolfo-components-border-[#D1D5DB] hover:rodolfo-components-shadow-custom hover:rodolfo-components-border-[#C0C9D7]":
-              !isFocused,
-            "rodolfo-components-bg-[#dde1e9]": isDisabled,
-            "rodolfo-components-border-red-400": hasError,
-          }
-        )}
+        id={id}
+        ref={dropdownRef}
+        className="rodolfo-components-font-[Inter]"
       >
-        <Label label={label} />
-        <div className="rodolfo-components-grid rodolfo-components-flex-1 rodolfo-components-flex-shrink-1 rodolfo-components-basis-0">
-          {!inputValue && (
-            <div
-              data-testid="selected-value"
-              className={classNames(
-                "rodolfo-components-font-sm/[22px] rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-row-start-1 rodolfo-components-row-end-2 rodolfo-components-col-start-1 rodolfo-components-col-end-3 rodolfo-components-w-full",
-                {
-                  "rodolfo-components-text-[#7d7d7e]": selectedItem,
-                  "rodolfo-components-text-[#b2b6bd]": !selectedItem,
-                }
-              )}
-            >
-              {selectedItem ? selectedItem?.label : placeholder}
-            </div>
+        <div
+          data-testid="dropdown-toggle"
+          onClick={isDisabled ? () => null : onChangeMenuStatus}
+          className={classNames(
+            "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-flex-wrap rodolfo-components-justify-between rodolfo-components-h-[38px] rodolfo-components-border rodolfo-components-relative rodolfo-components-bg-white rodolfo-components-rounded-lg rodolfo-components-px-4 rodolfo-components-w-full ",
+            {
+              "rodolfo-components-border-focus": isFocused,
+              "rodolfo-components-border-[#D1D5DB] hover:rodolfo-components-shadow-custom hover:rodolfo-components-border-[#C0C9D7]":
+                !isFocused,
+              "rodolfo-components-bg-[#dde1e9]": isDisabled,
+              "rodolfo-components-border-red-400": hasError,
+            }
           )}
-          <div className="rodolfo-components-inline-grid rodolfo-components-row-start-1 rodolfo-components-row-end-2 rodolfo-components-col-start-1 rodolfo-components-col-end-3">
-            <input
-              data-testid="input-search"
-              role="combobox"
-              ref={inputRef}
-              onChange={onSearchOption}
-              value={inputValue}
-              disabled={isDisabled}
-              className="rodolfo-components-text-[#7d7d7e] rodolfo-components-cursor-pointer rodolfo-components-text-sm/[22px] rodolfo-components-w-full rodolfo-components-outline-none rodolfo-components-bg-transparent"
-            />
-          </div>
-        </div>
-        <img src={`/${isOpen ? "up" : "down"}.svg`} />
-      </div>
-      {hasError && (
-        <div className="rodolfo-components-tx-sm rodolfo-components-text-red-400">
-          {error}
-        </div>
-      )}
-
-      <div className="rodolfo-components-relative">
-        {isOpen && (
-          <div data-testid="dropdown-menu" className={dropdownClass}>
-            {filteredItems.length > 0 ? (
-              <ul role="menu">
-                {filteredItems?.map((item) => (
-                  <li
-                    role="menuitem"
-                    key={item.value}
-                    onClick={() => handleChange(item)}
-                    className={classNames(
-                      "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-h-[34px] rodolfo-components-px-2 rodolfo-components-flex rodolfo-components-items-center rodolfo-components-cursor-pointer ",
-                      {
-                        "rodolfo-components-bg-gray-100 ":
-                          selectedItem?.value === item.value,
-                        "hover:rodolfo-components-bg-blue-50":
-                          selectedItem?.value !== item.value,
-                      }
-                    )}
-                  >
-                    {hasImage && (
-                      <img
-                        src={item.imageUrl}
-                        alt="image"
-                        loading="lazy"
-                        className="rodolfo-components-mr-2 rodolfo-components-min-w-4"
-                      />
-                    )}
-                    <span className="rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-text-custom-sm rodolfo-components-font-normal rodolfo-components-leading-custom rodolfo-components-tracking-custom rodolfo-components-text-sm rodolfo-components-text-[#6B7280]">
-                      {item.label}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div className="rodolfo-components-flex rodolfo-components-justify-center">
-                <p className="rodolfo-components-text-sm rodolfo-components-text-[#b2b6bd]">
-                  No options
-                </p>
+        >
+          <Label label={label} />
+          <div className="rodolfo-components-grid rodolfo-components-flex-1 rodolfo-components-flex-shrink-1 rodolfo-components-basis-0">
+            {!inputValue && (
+              <div
+                data-testid="selected-value"
+                className={classNames(
+                  "rodolfo-components-font-sm/[22px] rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-row-start-1 rodolfo-components-row-end-2 rodolfo-components-col-start-1 rodolfo-components-col-end-3 rodolfo-components-w-full",
+                  {
+                    "rodolfo-components-text-[#7d7d7e]": selectedItem,
+                    "rodolfo-components-text-[#b2b6bd]": !selectedItem,
+                  }
+                )}
+              >
+                {selectedItem ? selectedItem?.label : placeholder}
               </div>
             )}
+            <div className="rodolfo-components-inline-grid rodolfo-components-row-start-1 rodolfo-components-row-end-2 rodolfo-components-col-start-1 rodolfo-components-col-end-3">
+              <input
+                data-testid="input-search"
+                role="combobox"
+                ref={inputRef}
+                onChange={onSearchOption}
+                value={inputValue}
+                disabled={isDisabled}
+                className="rodolfo-components-text-[#7d7d7e] rodolfo-components-cursor-pointer rodolfo-components-text-sm/[22px] rodolfo-components-w-full rodolfo-components-outline-none rodolfo-components-bg-transparent"
+              />
+            </div>
+          </div>
+          <img src={`/${isOpen ? "up" : "down"}.svg`} />
+        </div>
+        {hasError && (
+          <div className="rodolfo-components-tx-sm rodolfo-components-text-red-400">
+            {error}
           </div>
         )}
+
+        <div className="rodolfo-components-relative">
+          {isOpen && (
+            <div data-testid="dropdown-menu" className={dropdownClass}>
+              {filteredItems.length > 0 ? (
+                <ul role="menu">
+                  {filteredItems?.map((item) => (
+                    <li
+                      role="menuitem"
+                      key={item.value}
+                      onClick={() => handleChange(item)}
+                      className={classNames(
+                        "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-h-[34px] rodolfo-components-px-2 rodolfo-components-flex rodolfo-components-items-center rodolfo-components-cursor-pointer ",
+                        {
+                          "rodolfo-components-bg-gray-100 ":
+                            selectedItem?.value === item.value,
+                          "hover:rodolfo-components-bg-blue-50":
+                            selectedItem?.value !== item.value,
+                        }
+                      )}
+                    >
+                      {hasImage && (
+                        <img
+                          src={item.imageUrl}
+                          alt="image"
+                          loading="lazy"
+                          className="rodolfo-components-mr-2 rodolfo-components-min-w-4"
+                        />
+                      )}
+                      <span className="rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-text-custom-sm rodolfo-components-font-normal rodolfo-components-leading-custom rodolfo-components-tracking-custom rodolfo-components-text-sm rodolfo-components-text-[#6B7280]">
+                        {item.label}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="rodolfo-components-flex rodolfo-components-justify-center">
+                  <p className="rodolfo-components-text-sm rodolfo-components-text-[#b2b6bd]">
+                    No options
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

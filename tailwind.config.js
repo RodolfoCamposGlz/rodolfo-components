@@ -5,6 +5,9 @@ export default {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        Inter: ["Inter", "sans-serif"],
+      },
       fontSize: {
         "custom-sm": "14px",
       },
