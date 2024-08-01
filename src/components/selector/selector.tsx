@@ -47,13 +47,16 @@ export const Selector = (props: ISelectorProps): JSX.Element => {
     },
   });
 
-  console.log("isDisabled", isDisabled);
   return (
     <div className="rodolfo-components">
       <div
         id={id}
         ref={dropdownRef}
         className="rodolfo-components-font-[Inter]"
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-disabled={isDisabled}
       >
         <div
           data-testid="dropdown-toggle"
@@ -70,6 +73,9 @@ export const Selector = (props: ISelectorProps): JSX.Element => {
               "rodolfo-components-border-red-400": hasError,
             }
           )}
+          role="button"
+          aria-controls="dropdown-menu"
+          aria-label="Toggle Dropdown"
         >
           <Label label={label} />
           <div className="rodolfo-components-grid rodolfo-components-flex-1 rodolfo-components-flex-shrink-1 rodolfo-components-basis-0">
@@ -101,13 +107,23 @@ export const Selector = (props: ISelectorProps): JSX.Element => {
                     "rodolfo-components-cursor-not-allowed": isDisabled,
                   }
                 )}
+                aria-autocomplete="list"
+                aria-controls="dropdown-menu"
+                aria-label="Search"
               />
             </div>
           </div>
-          {isOpen ? <UpArrow /> : <DownArrow />}
+          {isOpen ? (
+            <UpArrow aria-hidden="true" />
+          ) : (
+            <DownArrow aria-hidden="true" />
+          )}
         </div>
         {hasError && (
-          <div className="rodolfo-components-tx-sm rodolfo-components-text-red-400">
+          <div
+            className="rodolfo-components-tx-sm rodolfo-components-text-red-400"
+            aria-live="assertive"
+          >
             {error}
           </div>
         )}
@@ -115,16 +131,20 @@ export const Selector = (props: ISelectorProps): JSX.Element => {
         <div className="rodolfo-components-relative">
           {isOpen && (
             <div
+              id="dropdown-menu"
               data-testid="dropdown-menu"
               className={
                 "rodolfo-components-absolute rodolfo-components-bg-white rodolfo-components-w-full rodolfo-components-max-h-52 rodolfo-components-overflow-y-auto rodolfo-components-py-2  rodolfo-components-rounded-lg rodolfo-components-shadow-custom rodolfo-components-z-10 rodolfo-components-mt-1"
               }
+              role="listbox"
+              aria-labelledby={id}
+              aria-activedescendant={selectedItem?.value}
             >
               {filteredItems.length > 0 ? (
-                <ul role="menu">
+                <ul role="presentation">
                   {filteredItems?.map((item: DropdownItem) => (
                     <li
-                      role="menuitem"
+                      role="option"
                       key={item.value}
                       onClick={() => handleChange(item)}
                       className={classNames(
@@ -136,9 +156,13 @@ export const Selector = (props: ISelectorProps): JSX.Element => {
                             selectedItem?.value !== item.value,
                         }
                       )}
+                      aria-selected={selectedItem?.value === item.value}
                     >
                       {hasImage && (
-                        <Profile className="rodolfo-components-mr-2 rodolfo-components-min-w-4" />
+                        <Profile
+                          className="rodolfo-components-mr-2 rodolfo-components-min-w-4"
+                          aria-hidden="true"
+                        />
                       )}
                       <span className="rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-text-custom-sm rodolfo-components-font-normal rodolfo-components-leading-custom rodolfo-components-tracking-custom rodolfo-components-text-sm rodolfo-components-text-[#6B7280]">
                         {item.label}
