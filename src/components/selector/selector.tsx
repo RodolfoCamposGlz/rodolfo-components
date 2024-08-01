@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import classNames from "classnames";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { ISelectorProps, DropdownItem } from "./selector.types";
+import Profile from "../icons/profile";
+import UpArrow from "../icons/arrow_up";
+import DownArrow from "../icons/arrow_down";
 
 const DEFAULT_PLACEHOLDER = "Select...";
 
@@ -190,7 +193,7 @@ export const Selector = ({
               />
             </div>
           </div>
-          <img src={`/${isOpen ? "up" : "down"}.svg`} />
+          {isOpen ? <UpArrow /> : <DownArrow />}
         </div>
         {hasError && (
           <div className="rodolfo-components-tx-sm rodolfo-components-text-red-400">
@@ -209,7 +212,7 @@ export const Selector = ({
                       key={item.value}
                       onClick={() => handleChange(item)}
                       className={classNames(
-                        "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-h-[34px] rodolfo-components-px-2 rodolfo-components-flex rodolfo-components-items-center rodolfo-components-cursor-pointer ",
+                        "rodolfo-components-flex rodolfo-components-items-center rodolfo-components-h-[34px] rodolfo-components-px-4 rodolfo-components-flex rodolfo-components-items-center rodolfo-components-cursor-pointer ",
                         {
                           "rodolfo-components-bg-gray-100 ":
                             selectedItem?.value === item.value,
@@ -219,12 +222,7 @@ export const Selector = ({
                       )}
                     >
                       {hasImage && (
-                        <img
-                          src={item.imageUrl}
-                          alt="image"
-                          loading="lazy"
-                          className="rodolfo-components-mr-2 rodolfo-components-min-w-4"
-                        />
+                        <Profile className="rodolfo-components-mr-2 rodolfo-components-min-w-4" />
                       )}
                       <span className="rodolfo-components-truncate rodolfo-components-max-w-full rodolfo-components-text-custom-sm rodolfo-components-font-normal rodolfo-components-leading-custom rodolfo-components-tracking-custom rodolfo-components-text-sm rodolfo-components-text-[#6B7280]">
                         {item.label}

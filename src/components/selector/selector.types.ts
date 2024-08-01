@@ -14,5 +14,4 @@ export interface ISelectorProps {
 export interface DropdownItem {
   label: string;
   value: string;
-  imageUrl?: string;
 }

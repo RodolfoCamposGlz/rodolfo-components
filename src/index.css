@@ -576,20 +576,12 @@ video {
   position: relative;
 }
 
-.rodolfo-components .rodolfo-components-left-\[12px\]{
-  left: 12px;
+.rodolfo-components .rodolfo-components-left-\[8px\]{
+  left: 8px;
 }
 
 .rodolfo-components .rodolfo-components-top-\[-8px\]{
   top: -8px;
-}
-
-.rodolfo-components .rodolfo-components-left-\[10px\]{
-  left: 10px;
-}
-
-.rodolfo-components .rodolfo-components-left-\[8px\]{
-  left: 8px;
 }
 
 .rodolfo-components .rodolfo-components-z-10{
@@ -740,9 +732,9 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.rodolfo-components .rodolfo-components-px-2{
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+.rodolfo-components .rodolfo-components-px-1{
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .rodolfo-components .rodolfo-components-px-4{
@@ -755,21 +747,8 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.rodolfo-components .rodolfo-components-px-1{
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.rodolfo-components .rodolfo-components-font-\[\'Inter\'\]{
-  font-family: 'Inter';
-}
-
 .rodolfo-components .rodolfo-components-font-\[Inter\]{
   font-family: Inter;
-}
-
-.rodolfo-components .rodolfo-components-font-\[sad\]{
-  font-family: sad;
 }
 
 .rodolfo-components .rodolfo-components-text-custom-sm{

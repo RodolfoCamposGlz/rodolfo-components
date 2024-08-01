@@ -3,21 +3,21 @@ import { Selector } from "./selector";
 import { ISelectorProps } from "./selector.types";
 
 const mockUnSorted = [
-  { label: "Nectarine", value: "nectarine", imageUrl: "/profile.svg" },
-  { label: "Fig", value: "fig", imageUrl: "/profile.svg" },
-  { label: "Grape", value: "grape", imageUrl: "/profile.svg" },
-  { label: "Honeydew", value: "honeydew", imageUrl: "/profile.svg" },
-  { label: "Cherry", value: "cherry", imageUrl: "/profile.svg" },
-  { label: "Kiwi", value: "kiwi", imageUrl: "/profile.svg" },
-  { label: "Apple", value: "apple", imageUrl: "/profile.svg" },
-  { label: "Elderberry", value: "elderberry", imageUrl: "/profile.svg" },
-  { label: "Orange", value: "orange", imageUrl: "/profile.svg" },
-  { label: "Banana", value: "banana", imageUrl: "/profile.svg" },
-  { label: "Lemon", value: "lemon", imageUrl: "/profile.svg" },
-  { label: "Papaya", value: "papaya", imageUrl: "/profile.svg" },
-  { label: "Quince", value: "quince", imageUrl: "/profile.svg" },
-  { label: "Date", value: "date", imageUrl: "/profile.svg" },
-  { label: "Mango", value: "mango", imageUrl: "/profile.svg" },
+  { label: "Nectarine", value: "nectarine" },
+  { label: "Fig", value: "fig" },
+  { label: "Grape", value: "grape" },
+  { label: "Honeydew", value: "honeydew" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Kiwi", value: "kiwi" },
+  { label: "Apple", value: "apple" },
+  { label: "Elderberry", value: "elderberry" },
+  { label: "Orange", value: "orange" },
+  { label: "Banana", value: "banana" },
+  { label: "Lemon", value: "lemon" },
+  { label: "Papaya", value: "papaya" },
+  { label: "Quince", value: "quince" },
+  { label: "Date", value: "date" },
+  { label: "Mango", value: "mango" },
 ];
 
 export default {
