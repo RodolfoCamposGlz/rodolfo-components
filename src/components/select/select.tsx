@@ -1,16 +1,16 @@
 import { useRef } from "react";
 import classNames from "classnames";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
-import { ISelectorProps, DropdownItem } from "./selector.types";
+import { ISelectorProps, DropdownItem } from "./select.types";
 import Profile from "../icons/profile";
 import UpArrow from "../icons/arrow_up";
 import DownArrow from "../icons/arrow_down";
-import { useSelectorController } from "./useSelector";
+import { useSelectorController } from "./useSelect";
 import { Label } from "./label/label";
 
 const DEFAULT_PLACEHOLDER = "Select...";
 
-export const Selector = (props: ISelectorProps): JSX.Element => {
+export const Select = (props: ISelectorProps): JSX.Element => {
   const {
     id,
     isDisabled,

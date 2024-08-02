@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from "@storybook/react";
-import { Selector } from "./selector";
-import { ISelectorProps } from "./selector.types";
+import { Select } from "./select";
+import { ISelectorProps } from "./select.types";
 
 const mockUnSorted = [
   { label: "Nectarine", value: "nectarine" },
@@ -22,11 +22,11 @@ const mockUnSorted = [
 
 export default {
   title: "Components/Checkbox",
-  component: Selector,
+  component: Select,
 } as Meta;
 
 const Template: StoryFn<ISelectorProps> = (args) => {
-  return <Selector {...args} />;
+  return <Select {...args} />;
 };
 
 export const Default = Template.bind({});

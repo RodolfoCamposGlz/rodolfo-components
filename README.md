@@ -8,6 +8,12 @@ The React Select Component provides a customizable and accessible way to include
 npm i rodolfo-components
 ```
 
+## Execute tests:
+
+```
+npm test
+```
+
 ## Basic Usage:
 
 ```
@@ -20,8 +26,10 @@ npm i rodolfo-components
 ## Example:
 
 ```
+'use client';
 import React from 'react';
-import Select from 'rodolfo-components';
+import { Select } from 'rodolfo-components';
+import "rodolfo-components/styles.css";
 
 const App = () => {
   return (

@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { Selector } from "../components/selector";
+import { Select } from "../components/select";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 const mockOptions = [
@@ -13,16 +13,16 @@ const unsortedOptions = [
   { value: "2", label: "Cherry" },
 ];
 
-test("Renders Selector Component", () => {
-  render(<Selector options={[]} label="" />);
+test("Renders Select Component", () => {
+  render(<Select options={[]} label="" />);
   expect(true).toBeTruthy();
 });
 
 test("should open dropdown when clicked", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={mockOptions}
       onSelect={() => {}}
     />
@@ -48,9 +48,9 @@ test("should open dropdown when clicked", () => {
 
 test("should display the selected option value", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={mockOptions}
       onSelect={() => {}}
     />
@@ -72,9 +72,9 @@ test("should display the selected option value", () => {
 
 test("should organize options from A to Z", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
       onSelect={() => {}}
@@ -96,9 +96,9 @@ test("should organize options from A to Z", () => {
 });
 test("should move selected item to the top of the list", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
     />
@@ -127,9 +127,9 @@ test("should move selected item to the top of the list", () => {
 
 test("should move selected item to the top of the list and the remaning should be sorted", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
     />
@@ -158,9 +158,9 @@ test("should move selected item to the top of the list and the remaning should b
 
 test("should search the option and show it in the menu", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
     />
@@ -182,9 +182,9 @@ test("should search the option and show it in the menu", () => {
 
 test("applies hover styles correctly in selector input", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
     />
@@ -202,9 +202,9 @@ test("applies hover styles correctly in selector input", () => {
 
 test("applies hover styles correctly in dropdown", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
     />
@@ -223,9 +223,9 @@ test("applies hover styles correctly in dropdown", () => {
 
 test("shows border color when the menu is open", () => {
   render(
-    <Selector
+    <Select
       id="test-selector"
-      label="Test Selector"
+      label="Test Select"
       options={unsortedOptions}
       isSorted={true}
     />

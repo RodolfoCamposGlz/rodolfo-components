@@ -3,7 +3,7 @@ import {
   DropdownControllerProps,
   DropdownItem,
   UseSelectorControllerReturn,
-} from "./selector.types";
+} from "./select.types";
 
 export const useSelectorController = ({
   defaultValue,

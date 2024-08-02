@@ -1,1 +1,1 @@
-export { Selector } from "./components/selector";
+export { Select } from "./components/select";
