@@ -21,7 +21,7 @@ const mockUnSorted = [
 ];
 
 export default {
-  title: "Components/Checkbox",
+  title: "Components/Select",
   component: Select,
 } as Meta;
 
